@@ -1,0 +1,94 @@
+#Discussion Question 3 (a): The sum of the first 10 counting numbers is 55.
+def sum_first_n_numbers(n):
+    """
+  # Calculate the sum of the first n counting numbers.
+    """
+    total = 0
+    i = 1
+    while i <= n:
+        total += i
+        i += 1
+    return total
+
+#Discussion Question 3 (c): The sum of the provided numbers until 99 is 60.
+def sum_until_99(numbers):
+    """
+    #Calculate the sum of numbers entered by the user until the number 99 is encountered.
+    """
+    total = 0
+    for num in numbers:
+        if num == 99:
+            break
+        total += num
+    return total
+
+#Programming Exercise 1: The 8th Fibonacci number is 13.
+def nth_fibonacci(n):
+    """
+    Calculate the nth Fibonacci number.
+    """
+    a, b = 0, 1
+    if n == 1:
+        return a
+    elif n == 2:
+        return b
+    for _ in range(n - 2):
+        a, b = b, a + b
+    return b
+
+
+def syracuse_sequence(n):
+    """
+    Generate the Syracuse (Collatz) sequence starting with n.
+    """
+    sequence = []
+    while n != 1:
+        sequence.append(n)
+        if n % 2 == 0:  # Even number
+            n //= 2
+        else:  # Odd number
+            n = 3 * n + 1
+    sequence.append(1)
+    return sequence
+
+
+def generate_truth_table():
+    """
+    Generate the truth table for Boolean expressions.
+    """
+    table = []
+    values = [True, False]
+    for P in values:
+        for Q in values:
+            for R in values:
+                not_p_and_q = not (P and Q)
+                not_p_or_q = (not P) or Q
+                p_or_not_q = P or (not Q)
+                p_or_r_and_q_or_r = (P or R) and (Q or R)
+                table.append((P, Q, R, not_p_and_q, not_p_or_q, p_or_not_q, p_or_r_and_q_or_r))
+    return table
+
+
+if __name__ == "__main__":
+    # Discussion Question 3 (a)
+    n = 10
+    print(f"Sum of the first {n} counting numbers: {sum_first_n_numbers(n)}")
+
+    # Discussion Question 3 (c)
+    example_numbers = [10, 20, 30, 99, 50]  # Input stops summing at 99
+    print(f"Sum of numbers until 99: {sum_until_99(example_numbers)}")
+
+    # Programming Exercise 1
+    fibonacci_position = 8
+    print(f"The {fibonacci_position}th Fibonacci number: {nth_fibonacci(fibonacci_position)}")
+
+    # Programming Exercise 4
+    syracuse_start = 15
+    print(f"Syracuse sequence starting with {syracuse_start}: {syracuse_sequence(syracuse_start)}")
+
+    # Discussion Question 2 - Truth Table
+    truth_table = generate_truth_table()
+    print("\nTruth Table for Boolean Expressions:")
+    print("P     Q     R     not (P and Q)   (not P) or Q   P or (not Q)   (P or R) and (Q or R)")
+    for row in truth_table:
+        print(f"{row[0]}  {row[1]}  {row[2]}   {row[3]}            {row[4]}           {row[5]}           {row[6]}")
